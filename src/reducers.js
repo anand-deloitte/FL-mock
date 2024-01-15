@@ -1,13 +1,12 @@
 import { combineReducers } from 'redux'
 import { connectRouter } from 'connected-react-router'
-import { push } from 'connected-react-router';
 
 const appReducer = (state = { isFrench: false }, action) => {
   switch (action.type) {
     case 'TOGGLE_LANGUAGE':
       return { ...state, isFrench: !state.isFrench };
     case 'GO_TO_RED_PAGE':
-      dispatch(push('/red'));
+      console.log('reaching here');
       return state;
     default:
       return state;

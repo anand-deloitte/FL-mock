@@ -27,6 +27,7 @@ class Header extends React.Component {
   };
 
   handleRedButton = () => {
+    console.log('Change pafe button clicked');
     this.props.dispatch(goToRedPage());
   };
 
@@ -41,13 +42,13 @@ class Header extends React.Component {
         <select
           id="Dropdown"
           className="dropdown"
-          onChange={(e)=> this.handleDropdown(e,'string')}
+          onChange={(e) => this.handleDropdown(e,'string')}
         >
           <option value="home">Home Page</option>
           <option value="red">Red Page</option>
         </select>
 
-        <button onClick={this.handleRedButton()}>Red Button</button>
+        <button onClick={this.handleRedButton}>Red Button</button>
       </div>
     );
   }

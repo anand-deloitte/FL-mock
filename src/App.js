@@ -4,7 +4,6 @@ import { Switch, Route } from 'react-router';
 import Home from './Views/Home';
 import RedPage from './Views/RedPage';
 import Header from './Components/Header';
-
 function App() {
   return (
     <div className="App">

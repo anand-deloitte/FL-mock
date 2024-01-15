@@ -11,9 +11,7 @@ const store = configureStore()
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <React.StrictMode>
         <App />
-      </React.StrictMode>
     </ConnectedRouter>
   </Provider>,
   document.getElementById('root')
