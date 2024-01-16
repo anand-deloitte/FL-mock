@@ -3,7 +3,7 @@ import React from 'react';
 
 import '../style.css'
 
-function Home(props) {
+function Home() {
   
   return (
     <div>

@@ -7,6 +7,7 @@ import thunk from 'redux-thunk';
 
 export const history = createBrowserHistory()
 
+
 export const toggleLanguage = () => {
   return ({ type: 'TOGGLE_LANGUAGE' })};
 

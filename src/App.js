@@ -1,20 +1,37 @@
-import React from 'react';
-import { Switch, Route } from 'react-router';
+import React from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import Home from './Views/Home';
-import RedPage from './Views/RedPage';
-import Header from './Components/Header';
+import Root from "./Views/Root";
+import Home from "./Views/Home";
+import Contact from "./Views/Contact";
+import ErrorPage from "./Views/error-page";
 
-function App() {
+import Header from "./Components/Header";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    errorElement:<ErrorPage/>,
+    children:[{
+      path: "contacts/:contactId",
+      element: <Contact />,
+    }],
+  },
+  {
+    path: "/home",
+    element: <Home />,
+  },
+  
+]);
+
+const App = () => {
   return (
     <div className="App">
-      <Header/>
-      <Switch>
-        <Route exact path="/" render={()=><Home name="Sumeru" />} />
-        <Route path="/red" render={()=><RedPage />} />
-      </Switch>
+      {/* <Header  /> */}
+      <RouterProvider router={router} />
     </div>
   );
-}
+};
 
 export default App;

@@ -1,5 +1,4 @@
 import React from "react";
-import { push } from "connected-react-router";
 import { toggleLanguage } from "../store";
 import { goToRedPage } from "../store";
 import { connect } from "react-redux";
@@ -16,13 +15,16 @@ class Header extends React.Component {
     this.props.dispatch(toggleLanguage());
   };
 
-  handleDropdown = (event, text) => {
-    console.log(text)
+  handleDropdown = (event) => {
+    event.preventDefault();
     const selectedOption = event.target.value;
+    console.log(selectedOption);
     if (selectedOption === "home") {
-      this.props.dispatch(push("/"));
+      this.props.navigate("/");
+      // this.props.dispatch(push("/"));
     } else if (selectedOption === "red") {
-      this.props.dispatch(goToRedPage());
+      this.props.navigate("/red");
+      // this.props.dispatch(goToRedPage());
     }
   };
 
@@ -37,11 +39,11 @@ class Header extends React.Component {
           {this.isFrench ? "Bonjour" : "Hello"} {this.props.name} {React.version}
         </h1>
         <button onClick={this.handleToggleLanguage}>Toggle Language</button>
-
+        
         <select
           id="Dropdown"
           className="dropdown"
-          onChange={(e)=> this.handleDropdown(e,'string')}
+          onChange={(e)=> this.handleDropdown(e)}
         >
           <option value="home">Home Page</option>
           <option value="red">Red Page</option>
