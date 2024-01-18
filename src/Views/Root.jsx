@@ -25,11 +25,11 @@ export default function Root() {
           <ul>
             <li>
               {/* <a href={`/contacts/1`}>Your Name</a> */}
-              <Link to={`contacts/1`}>Your Name</Link>
+              <Link to={`contacts/1`}>Route1</Link>
             </li>
             <li>
               {/* <a href={`/contacts/2`}>Your Friend</a> */}
-              <Link to={`contacts/2`}>Your Friend</Link>
+              <Link to={`contacts/2`}>Route2</Link>
             </li>
           </ul>
         </nav>

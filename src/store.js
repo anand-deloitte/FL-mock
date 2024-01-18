@@ -13,7 +13,6 @@ export const toggleLanguage = () => {
 
 export const goToRedPage = () => {
   return (dispatch) => {
-    dispatch(push('/red'));
     dispatch({ type: 'GO_TO_RED_PAGE' });
   };
 };

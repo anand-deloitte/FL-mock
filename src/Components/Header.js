@@ -1,8 +1,9 @@
 import React from "react";
+import { push } from "connected-react-router";
 import { toggleLanguage } from "../store";
 import { goToRedPage } from "../store";
 import { connect } from "react-redux";
-
+import { withNavigation } from "../HOC/withNavigation";
 class Header extends React.Component {
 
   UNSAFE_componentWillReceiveProps(nextProps){
@@ -16,15 +17,11 @@ class Header extends React.Component {
   };
 
   handleDropdown = (event) => {
-    event.preventDefault();
     const selectedOption = event.target.value;
-    console.log(selectedOption);
     if (selectedOption === "home") {
-      this.props.navigate("/");
-      // this.props.dispatch(push("/"));
+      this.props.dispatch(push("/"));
     } else if (selectedOption === "red") {
-      this.props.navigate("/red");
-      // this.props.dispatch(goToRedPage());
+      this.props.dispatch(goToRedPage());
     }
   };
 
@@ -34,22 +31,22 @@ class Header extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={{border:'2px solid black'}}>
         <h1>
-          {this.isFrench ? "Bonjour" : "Hello"} {this.props.name} {React.version}
+          {this.isFrench ? "Bonjour" : "This is Class Based Header Component"} {this.props.name}
         </h1>
         <button onClick={this.handleToggleLanguage}>Toggle Language</button>
-        
-        <select
+
+        {/* <select
           id="Dropdown"
           className="dropdown"
-          onChange={(e)=> this.handleDropdown(e)}
+          onChange={(e) => this.handleDropdown(e)}
         >
           <option value="home">Home Page</option>
           <option value="red">Red Page</option>
-        </select>
+        </select> */}
 
-        <button onClick={this.handleRedButton()}>Red Button</button>
+        <button onClick={this.handleRedButton}>Route 1</button>
       </div>
     );
   }
@@ -58,3 +55,4 @@ const mapStateToProps = (state) => ({
   isFrench: state.app.isFrench,
 });
 export default connect(mapStateToProps, null)(Header);
+// export default withNavigation(Header);

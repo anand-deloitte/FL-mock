@@ -1,10 +1,10 @@
 import * as React from "react";
 import { Form } from "react-router-dom";
 
-export default function Contact() {
+export default function Contact2() {
   const contact = {
     first: "Route",
-    last: "1",
+    last: "2",
     avatar: "http://via.placeholder.com/640x360",
     twitter: "Details",
     notes: "Some notes",
