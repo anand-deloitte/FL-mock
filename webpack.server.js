@@ -1,39 +1,33 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CompressionWebpackPlugin = require("compression-webpack-plugin")
 
 module.exports = {
-  entry: './server/index.js',
   target: 'node',
+  mode: 'development',
   externals: [nodeExternals()],
+  entry: './server/index.js',
   output: {
-    path: path.resolve('build'),
-    filename: 'index.js'
+    filename: 'server.js',
+    path: path.resolve(__dirname, 'build'),
   },
   module: {
     rules: [
       {
-        test: /\.js$/,
-        use: 'babel-loader'
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              '@babel/preset-env',
+              '@babel/preset-react',
+            ],
+          },
+        },
       },
-      {
-        test: /\.css$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-        ],
-      }
-    ]
+    ],
   },
-  plugins:[
-
-    new MiniCssExtractPlugin({
-      filename: 'style.css',
-    }),
-    new CompressionWebpackPlugin({
-      algorithm: 'gzip',
-      test: /.js$|.css$/
-    })
-  ]
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
 };
