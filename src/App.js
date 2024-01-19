@@ -7,7 +7,6 @@ import Contact from "./Views/Contact";
 import ErrorPage from "./Views/error-page";
 
 import Header from "./Components/Header";
-import Contact2 from "./Views/Contact2";
 
 const router = createBrowserRouter([
   {
@@ -18,11 +17,7 @@ const router = createBrowserRouter([
       {
         path: "contacts/:contactId",
         element: <Contact />,
-      },
-      {
-        path: "contacts/:contactId",
-        element: <Contact2 />,
-      },
+      }
     ],
   },
   {

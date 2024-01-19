@@ -1,8 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {hydrate} from 'react-dom';
+import AppPage from './Shared/AppPage';
+import { BrowserRouter } from 'react-router-dom';
 
-import AppServer from './AppServer';
-import "./index.css";
-
-
-ReactDOM.hydrate(<AppServer />, document.getElementById('root'));
+hydrate(
+    <BrowserRouter>
+        <AppPage />
+    </BrowserRouter>
+, document.getElementById('root'));
