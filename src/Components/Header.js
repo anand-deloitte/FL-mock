@@ -1,9 +1,8 @@
 import React from "react";
 import { push } from "connected-react-router";
-import { toggleLanguage } from "../store";
-import { goToRedPage } from "../store";
+import { toggleLanguage } from "../Redux/store";
+import { goToRedPage } from "../Redux/store";
 import { connect } from "react-redux";
-import { withNavigation } from "../HOC/withNavigation";
 class Header extends React.Component {
 
   UNSAFE_componentWillReceiveProps(nextProps){

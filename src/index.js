@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import AppServer from './AppServer';
 import "./index.css";
+import Server from './Views/Server';
 
-
-ReactDOM.hydrate(<AppServer />, document.getElementById('root'));
+ReactDOM.hydrate(<Server />, document.getElementById('root'));
