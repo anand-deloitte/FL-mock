@@ -3,18 +3,27 @@ import routes from "../src/Shared/routes";
 import { matchPath } from "react-router-dom";
 const express = require("express");
 const React = require("react");
+const { Provider } = require('react-redux');
+const { createMemoryHistory } = require('history');
 const ReactDOMServer = require("react-dom/server");
+const ConnectedRouter = require('connected-react-router');
 const serialize = require("serialize-javascript");
 const AppPage = require("../src/Shared/AppPage").default;
+// const createStore = require('../src/store'); 
 const app = express();
 const PORT = process.env.PORT || 3000;
 const path = require("path");
+// const history = createMemoryHistory();
 
 app.use(express.static(path.resolve(__dirname, "../build")));
 
 app.get("*", (req, res, next) => {
-  const activeRoute = routes.find((route) => matchPath(req.url, route)) || {};
+  const history = createMemoryHistory({
+    initialEntries: [encodeURI(req.url)] // encodeURI sanitizes the url before storing it
+  });
+  const store = {};
 
+  const activeRoute = routes.find((route) => matchPath(req.url, route)) || {};
   const promise = activeRoute.fetchInitialData
     ? activeRoute.fetchInitialData(req.path)
     : Promise.resolve();
@@ -23,9 +32,13 @@ app.get("*", (req, res, next) => {
     .then((data) => {
       const context = {data};
       const content = ReactDOMServer.renderToString(
-        <StaticRouter location={req.url} context={context}>
-          <AppPage />
-        </StaticRouter>
+        <Provider store={store}>
+             <ConnectedRouter history={history}>
+                <p>test server </p>
+                <AppPage />
+              </ConnectedRouter>
+        </Provider>
+       
       );
       const html = `
                   <!DOCTYPE html>

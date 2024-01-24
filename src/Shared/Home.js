@@ -1,9 +1,12 @@
 import React from 'react'
 
-export default function Home () {
+export default function Home() {
+  const clickMeforfun = () => {
+    alert('cliecked workd')
+  }
   return (
-    <span>
-      Select a Language
-    </span>
+    <button onClick={clickMeforfun}>
+      Select a Language you want
+    </button>
   )
 }

@@ -32,7 +32,7 @@
     "build:server": "webpack --config webpack.config.js",
     "build:client": "npm run build",
     "start:server": "node build/server.js",
-    "dev:start": "nodemon ./build/server.js",
+    "dev:start": "nodemon --exec \"webpack --config webpack.config.js && ./build/server.js\"",
     "dev": "npm-run-all --parallel build dev:*"
   },
   "eslintConfig": {

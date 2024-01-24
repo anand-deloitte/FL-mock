@@ -1,6 +1,7 @@
 import React from "react";
 import routes from "../Shared/routes";
-import { Switch , Route } from "react-router-dom";
+// import { Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Switch } from 'react-router-dom';
 import Navbar from "./Navbar";
 const  NoMatch = require("./NoMatch");
 
@@ -8,7 +9,8 @@ const AppPage = () => {
   return (
     <div>
       <Navbar />
-      <Switch>
+        <Routes>
+        {/* <Switch> */}
         {routes.map(({ path, exact, component: C, ...rest }) => (
           <Route
             key={path}
@@ -18,7 +20,9 @@ const AppPage = () => {
           />
         ))}
         <Route render={(props)=> <NoMatch {...props}/>} />
-      </Switch>
+        {/* </Switch> */}
+
+        </Routes>
     </div>
   );
 };
