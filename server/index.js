@@ -1,6 +1,8 @@
 import { StaticRouter } from "react-router-dom/cjs/react-router-dom.min";
 import routes from "../src/Shared/routes";
 import { matchPath } from "react-router-dom";
+import { createStore, applyMiddleware } from 'redux';
+import { createServerStore } from "../src/util/createStore";
 const express = require("express");
 const React = require("react");
 const { Provider } = require('react-redux');
@@ -21,8 +23,11 @@ app.get("*", (req, res, next) => {
   const history = createMemoryHistory({
     initialEntries: [encodeURI(req.url)] // encodeURI sanitizes the url before storing it
   });
-  const store = {};
-
+	const initialState = {};
+  const store = createServerStore(
+		initialState,
+		history,
+	);
   const activeRoute = routes.find((route) => matchPath(req.url, route)) || {};
   const promise = activeRoute.fetchInitialData
     ? activeRoute.fetchInitialData(req.path)
